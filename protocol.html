@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+    <title>Protocol Log Test App</title>
+
+    <!-- Required Stylesheets -->
+    <link type="text/css" rel="stylesheet" href="css/bootstrap-4.3.1.min.css" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap-vue.css" />
+
+    <!-- My Stylesheets -->
+    <link type="text/css" rel="stylesheet" href="css/myStyles.css" />
+</head>
+
+<body>
+    <div id="app">
+        <div id="header">
+            <h3 class="test-case-name"></h3>
+            <h4 class="test-case-heading"></h4>
+            <h4 class="test-case-id"></h4>
+        </div>
+        <template>
+            <b-container fluid>
+                <b-row>
+                    <!-- Search by filter input -->
+                    <b-col md="6" class="my-1">
+                        <b-form-group label-cols-sm="3" label="Filter:" class="mb-0">
+                            <b-input-group>
+                                <b-form-input v-model="filter" placeholder="Type to Search"></b-form-input>
+                                <b-input-group-append>
+                                    <b-button @click="filter = ''">Clear</b-button>
+                                </b-input-group-append>
+                            </b-input-group>
+                        </b-form-group>
+                    </b-col>
+                    <!-- Items per page in a drop down list -->
+                    <b-col md="6" class="my-1">
+                        <b-form-group label-cols-sm="3" label="Per page:" class="mb-0">
+                            <b-form-select v-model="perPage" :options="pageOptions"></b-form-select>
+                        </b-form-group>
+                    </b-col>
+                </b-row>
+
+                <b-row>
+                    <!-- Creating checkbox group for showing or hiding columns -->
+                    <b-col md="6" class="my-2">
+                        <b-form-group label="Show columns: ">
+                            <b-form-checkbox-group id="checkbox-group-1" v-model="selected" :options="fields"
+                                name="flavour-1">
+                            </b-form-checkbox-group>
+                        </b-form-group>
+                    </b-col>
+                    <!-- Creating checkbox group for other options -->
+                    <b-col md="6" class="my-1">
+                        <b-form-group label="Options: ">
+                            <b-form-checkbox v-model="small" inline>Small</b-form-checkbox>
+                            <b-form-checkbox v-model="bordered" inline>Bordered</b-form-checkbox>
+                        </b-form-group>
+                    </b-col>
+                </b-row>
+
+                <!-- Creating a table with its properties -->
+                <b-table id="myTable" :small="small" :bordered="bordered" hover head-variant="dark"
+                    v-if="activeFields.length > 0" stacked="md" :items="cptItems" :fields="activeFields"
+                    :current-page="currentPage" :per-page="perPage" :filter="filter" :sort-by.sync="sortBy"
+                    :sort-desc.sync="sortDesc" :tbody-tr-class="rowClass">
+
+                    <!-- Template for displaying sent messages -->
+                    <template slot="sentMessage" slot-scope="row">
+                        <p v-html="row.item.sentMessage" class="text-left text-break"></p>
+                        <button id="copy"><img src="img/copy.png" width="11" alt="Copy" @click="copy(row.item.sentMessage)"></button>
+                    </template>
+
+                    <!-- Template for displaying received messages -->
+                    <template slot="receivedMessage" slot-scope="row">
+                        <p v-html="row.item.receivedMessage" class="text-left text-break"></p>
+                    </template>
+                </b-table>
+
+                <!-- Pagination -->
+                <b-row>
+                    <b-col class="overflow-auto">
+                        <b-pagination v-model="currentPage" :total-rows="totalRows" :per-page="perPage" align="right">
+                            <span class="text-success" slot="first-text">First</span>
+                            <span class="text-danger" slot="prev-text">Prev</span>
+                            <span class="text-warning" slot="next-text">Next</span>
+                            <span class="text-info" slot="last-text">Last</span>
+                            <div slot="ellipsis-text">
+                                <b-spinner small type="grow"></b-spinner>
+                                <b-spinner small type="grow"></b-spinner>
+                                <b-spinner small type="grow"></b-spinner>
+                            </div>
+                            <span slot="page" slot-scope="{ page, active }">
+                                <b v-if="active">{{ page }}</b>
+                                <i v-else>{{ page }}</i>
+                            </span>
+                        </b-pagination>
+                    </b-col>
+                </b-row>
+            </b-container>
+        </template>
+    </div>
+
+    <!-- Required scripts -->
+    <script src="js/vue.js"></script>
+    <script src="js/polyfill.min.js"></script>
+    <script src="js/bootstrap-vue.js"></script>
+    <script src="js/require.min.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/protocol.js"></script>
+</body>
+</html>

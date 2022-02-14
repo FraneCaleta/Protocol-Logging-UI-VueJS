@@ -1,0 +1,24 @@
+div#header {
+    background-color: #EEEEEE;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+    padding: 20px 5px 30px 15px;
+    margin: 10px 1% 20px 1%;
+    color: steelblue;
+    word-wrap: break-word;
+}
+
+/* styles for table data */
+td {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    white-space: pre-line;
+}
+
+p {
+    margin-bottom: 0.2rem;
+}
+#copy {
+    float: left;
+    margin-left: 7rem;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<html>
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <title>Protocol Log List</title>
+
+    <!-- Required scripts -->
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="fileList.js"></script>
+    <!-- Required Stylesheets -->
+
+    <link type="text/css" rel="stylesheet" href="css/bootstrap-4.3.1.min.css" />
+
+    <style type="text/css">
+    a:visited{
+        color: #0000CC !important;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="link" class="page-header">
+            <h2>Protocol Log List</h2>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $.each(fileList, function () {
+            var link = '<a href="protocol.html?name=' + this.realName + '" class="list-group-item list-group-item-action" style="word-break:break-all;">' + this.displayName + '</a>';
+            $('#link').append(link);
+        });
+    </script>
+</body>
+
+</html>
