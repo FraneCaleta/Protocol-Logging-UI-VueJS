@@ -1,3 +1,6 @@
 # User interface for protocol logging
 
-User interface that uses Vue JavaScript framework and records requests/responses of protocols as easily and efficiently as possible after performing automated test cases.
+User interface that uses Vue JavaScript framework and helps us to record requests/responses of different protocols as easily and efficiently as possible after performing automated test cases.
+
+### Usage:
+Clone this repository and open "protocols.html" in the browser. From there you can check some of the created dummy protocol logs.
